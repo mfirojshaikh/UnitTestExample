@@ -33,4 +33,10 @@ class UnitTestExampleTests: XCTestCase {
         }
     }
     
+    func testUserInfo() {
+        let firstVC  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController
+        let userInfo = firstVC?.prepareRegisterObject()
+        print("userinfo  = \(String(describing: userInfo))")
+    }
+    
 }

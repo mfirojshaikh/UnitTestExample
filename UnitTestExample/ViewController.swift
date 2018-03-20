@@ -39,7 +39,7 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        guard let sender = sender else {
+        guard let _ = sender else {
             return
         }
         if let vc = segue.destination as? DetailVC {
@@ -54,7 +54,8 @@ class ViewController: UIViewController {
     // Get All information from view & prepare Register user object
     
     func prepareRegisterObject()->RegisterUser? {
-        guard let fname = txtFname.text, let lname = txtLName.text, let email = txtEmailAdd.text, let contact = txtContactNumber.text else {
+        print("first name = \(String(describing: txtFname?.text))")
+        guard let fname = txtFname?.text, let lname = txtLName?.text, let email = txtEmailAdd?.text, let contact = txtContactNumber?.text else {
             return nil
         }
         let registeredUser = RegisterUser(fname: fname, lname: lname, emailAdd: email, contact: contact)
