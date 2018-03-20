@@ -36,6 +36,7 @@ class UnitTestExampleTests: XCTestCase {
     func testUserInfo() {
         let firstVC  = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ViewController") as? ViewController
         let userInfo = firstVC?.prepareRegisterObject()
+        XCTAssertFalse(firstVC!.isValidEmail(strEmail: userInfo?.emailAdd ?? ""), "invalid email address")
         print("userinfo  = \(String(describing: userInfo))")
     }
     
