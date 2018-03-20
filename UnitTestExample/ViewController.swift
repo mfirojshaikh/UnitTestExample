@@ -61,6 +61,14 @@ class ViewController: UIViewController {
         return registeredUser
         
     }
+    
+    // MARK: - Validation function - please transfer this function to appropriate file based on your architecture
+    
+    func isValidEmail(strEmail: String) -> Bool {
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: strEmail)
+    }
 
 }
 
