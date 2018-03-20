@@ -10,10 +10,18 @@ import UIKit
 
 class DetailVC: UIViewController {
 
+    @IBOutlet weak var txtUserInfo: UITextView!
+    
+    var userInfo: RegisterUser? = nil
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        self.setUserInformation()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +30,9 @@ class DetailVC: UIViewController {
     }
     
 
+    override func viewDidAppear(_ animated: Bool) {
+        print("user information as = \(String(describing: userInfo))")
+    }
     /*
     // MARK: - Navigation
 
@@ -32,4 +43,23 @@ class DetailVC: UIViewController {
     }
     */
 
+    //MARK:- User Events
+    
+    @IBAction func tapExit(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func setUserInformation() {
+        if let userInfomation = userInfo {
+            
+            let fname = userInfomation.fname + " "
+            let lname = userInfomation.lname + " "
+            let email = userInfomation.emailAdd + " "
+            let contact  = userInfomation.contact + " "
+            
+            self.txtUserInfo.text = fname + lname + email + contact
+        }
+    }
+    
+    
 }

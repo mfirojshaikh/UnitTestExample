@@ -8,8 +8,23 @@
 
 import UIKit
 
+struct RegisterUser {
+    var fname: String
+    var lname: String
+    var emailAdd: String
+    var contact: String
+}
+
 class ViewController: UIViewController {
 
+    //MARK:- IBOutlet's
+    
+    @IBOutlet weak var txtFname: UITextField!
+    @IBOutlet weak var txtLName: UITextField!
+    @IBOutlet weak var txtEmailAdd: UITextField!
+    @IBOutlet weak var txtContactNumber: UITextField!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -20,6 +35,32 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    //MARK: - Preapre parameter for Segue
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        guard let sender = sender else {
+            return
+        }
+        if let vc = segue.destination as? DetailVC {
+            
+            if let userInfo = prepareRegisterObject() {
+                vc.userInfo = userInfo
+            }
+        }
+    }
+    
+    
+    // Get All information from view & prepare Register user object
+    
+    func prepareRegisterObject()->RegisterUser? {
+        guard let fname = txtFname.text, let lname = txtLName.text, let email = txtEmailAdd.text, let contact = txtContactNumber.text else {
+            return nil
+        }
+        let registeredUser = RegisterUser(fname: fname, lname: lname, emailAdd: email, contact: contact)
+        return registeredUser
+        
+    }
 
 }
 
